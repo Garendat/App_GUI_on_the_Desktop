@@ -91,6 +91,7 @@ class LoginWindow(QtWidgets.QMainWindow):
 
 
 class MainWindow(QtWidgets.QMainWindow):
+
     def __init__(self, parent=None, *args, **kwargs):
         QtWidgets.QWidget.__init__(self, parent)
 
@@ -109,13 +110,19 @@ class MainWindow(QtWidgets.QMainWindow):
         self.ui.delete_datebase.clicked.connect(self.delete_datebase)
         self.ui.pushButton_2.clicked.connect(self.add_item)
         self.ui.pushButton_3.clicked.connect(self.get_data)
+
+        self.ui.pushButton_4.clicked.connect(self.body_add_text)
+
+    def money(self):
+        money = str(self.ui.money_input.text()).replace(',', '.')
+        return money
+
     def insert_info(self):
-        money = self.ui.money_input.text()
         day = self.ui.comboBox.currentText()
         date = self.ui.date_input.text()
         try:
 
-            money = round(float(money), 2)
+            money = round(float(self.money()), 2)
             conn = sqlite3.connect('myDB.db')
             cursor = conn.cursor()
             cursor.execute('INSERT INTO ' + UserName + '_Sbor_money(money, date, day) VALUES(?, ?, ?)', [money, date, day])
@@ -165,15 +172,8 @@ class MainWindow(QtWidgets.QMainWindow):
 
 
 
-    def get_data(self):
-        conn = sqlite3.connect('myDB.db')
-        cursor = conn.cursor()
-        self.ui.money_input.setText('money')
-
-
     def take_email(self):
-        money = self.ui.money_input.text()
-        date = self.ui.date_input.text()
+
         addr_to = self.ui.email_lineEdit.text()
         conn = sqlite3.connect('myDB.db')
         cursor = conn.cursor()
@@ -193,8 +193,7 @@ class MainWindow(QtWidgets.QMainWindow):
             msg['From'] = UserEmail  # Адресат
             msg['To'] = addr_to  # Получатель
             msg['Subject'] = "Сборы"
-
-            body = "Сборы на " + date + " - " + str(money)
+            body = self.ui.textEdit.toPlainText()
             msg.attach(MIMEText(body, 'plain'))
 
             server = smtplib.SMTP_SSL('smtp.yandex.ru', 465)  # Создаем объект SMTP
@@ -205,6 +204,13 @@ class MainWindow(QtWidgets.QMainWindow):
             self.mbox('''Письмо отправлено!''')
         except:
             self.mbox('''Некорректные данные!''')
+
+    def body_add_text(self):
+
+        date = self.ui.date_input.text()
+        message = "Сборы на " + date + " - " + self.money()
+        self.ui.textEdit.setText(message)
+
 
     def total(self):
         n = self.ui.date_period_1.text()
@@ -224,14 +230,37 @@ class MainWindow(QtWidgets.QMainWindow):
             self.mbox('''Некорректное число!''')
 
 
+    def get_data(self):
+        try:
+            update_id = self.ui.update_end.text()
+            conn = sqlite3.connect('myDB.db')
+            cursor = conn.cursor()
+            cursor.execute('SELECT * FROM ' + UserName + '_Sbor_money WHERE id = ?', [int(update_id)])
+            row = cursor.fetchone()
+            if len(row) == 0:
+                self.mbox('''Записи с таким ID не существует!''')
+            else:
+                self.ui.money_input.setText(str(row[1]))
+                self.ui.date_input.setText(str(row[2]))
+                for i in range(len(self.ui.comboBox)):
+                    if self.ui.comboBox.itemText(i) == row[3]:
+
+                            self.ui.comboBox.setCurrentIndex(i)
+
+            cursor.close()
+            conn.close()
+
+        except:
+            self.mbox('''Введите корректный ID!''')
+
     def update(self):
-        money = self.ui.money_input.text()
+
         date = self.ui.date_input.text()
         day = self.ui.comboBox.currentText()
         update_id = self.ui.update_end.text()
         try:
             update_id = int(update_id)
-            money = float(money)
+            money = float(self.money())
             conn = sqlite3.connect('myDB.db')
             cursor = conn.cursor()
             cursor.execute('SELECT * FROM ' + UserName + '_Sbor_money WHERE id = ?', [update_id])
@@ -282,7 +311,7 @@ class MainWindow(QtWidgets.QMainWindow):
         conn = sqlite3.connect('myDB.db')
         cursor = conn.cursor()
         sum_id = self.ui.update_end.text()
-        money = self.ui.money_input.text()
+        money = self.money()
         try:
             sum_id = int(sum_id)
             money = float(money)
@@ -302,7 +331,7 @@ class MainWindow(QtWidgets.QMainWindow):
         conn = sqlite3.connect('myDB.db')
         cursor = conn.cursor()
         sum_id = self.ui.update_end.text()
-        money = self.ui.money_input.text()
+        money = self.money()
         try:
             sum_id = int(sum_id)
             money = float(money)

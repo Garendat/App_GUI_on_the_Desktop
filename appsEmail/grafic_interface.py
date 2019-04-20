@@ -11,7 +11,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
-        MainWindow.setObjectName("MainWindow")
+        MainWindow.setObjectName("Моя прога")
         MainWindow.resize(797, 568)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
@@ -116,6 +116,9 @@ class Ui_MainWindow(object):
         self.textEdit = QtWidgets.QTextEdit(self.centralwidget)
         self.textEdit.setGeometry(QtCore.QRect(10, 410, 551, 101))
         self.textEdit.setObjectName("textEdit")
+        self.pushButton_4 = QtWidgets.QPushButton(self.centralwidget)
+        self.pushButton_4.setGeometry(QtCore.QRect(580, 410, 191, 23))
+        self.pushButton_4.setObjectName("pushButton_4")
         self.insert_info.raise_()
         self.text_datebase.raise_()
         self.money_input.raise_()
@@ -141,6 +144,8 @@ class Ui_MainWindow(object):
         self.pushButton_2.raise_()
         self.pushButton_3.raise_()
         self.textEdit.raise_()
+        self.pushButton_4.raise_()
+
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 797, 19))
@@ -160,7 +165,7 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
+        MainWindow.setWindowTitle(_translate("MainWindow", "Моя прога"))
         self.insert_info.setText(_translate("MainWindow", "Записать в базу данных"))
         self.text_datebase.setHtml(_translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
@@ -188,5 +193,7 @@ class Ui_MainWindow(object):
         self.label_ID.setText(_translate("MainWindow", "ID"))
         self.pushButton_2.setText(_translate("MainWindow", "добавить email  в список"))
         self.pushButton_3.setText(_translate("MainWindow", "Достать данные"))
+
+        self.pushButton_4.setText(_translate("MainWindow", "Сформировать сообщение"))
 
 
