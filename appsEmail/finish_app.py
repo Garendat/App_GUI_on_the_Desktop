@@ -108,7 +108,7 @@ class MainWindow(QtWidgets.QMainWindow):
         self.ui.sum.clicked.connect(self.total)
         self.ui.delete_datebase.clicked.connect(self.delete_datebase)
         self.ui.pushButton_2.clicked.connect(self.add_item)
-
+        self.ui.pushButton_3.clicked.connect(self.get_data)
     def insert_info(self):
         money = self.ui.money_input.text()
         day = self.ui.comboBox.currentText()
@@ -128,6 +128,8 @@ class MainWindow(QtWidgets.QMainWindow):
             self.in_datebase()
         except:
             self.mbox('''Некорректные данные!''')
+
+
     def comboBoxItem(self):
         try:
             conn = sqlite3.connect('myDB.db')
@@ -143,9 +145,9 @@ class MainWindow(QtWidgets.QMainWindow):
         cursor = conn.cursor()
         cursor.execute('SELECT * FROM ' + UserName + '_Sbor_money')
         row = cursor.fetchall()
-        o = 'ID          Деньги\t          Дата\t        День\n\n'
+        o = 'ID\t Деньги\t                  Дата\t              День\n\n'
         for a in reversed(row):
-            o += str(a[0]) + '       ' + str(a[1]) + '\t     ' + a[2] + '\t   ' + a[3] + '\n'
+            o += str(a[0]) + "\t" + str(a[1]) + '\t              ' + a[2] + '\t        ' + a[3] + '\n\n'
         self.ui.text_datebase.setText(o)
         cursor.close()
         conn.close()
@@ -161,6 +163,12 @@ class MainWindow(QtWidgets.QMainWindow):
         except:
             self.mbox('''Некорректные данные!''')
 
+
+
+    def get_data(self):
+        conn = sqlite3.connect('myDB.db')
+        cursor = conn.cursor()
+        self.ui.money_input.setText('money')
 
 
     def take_email(self):
