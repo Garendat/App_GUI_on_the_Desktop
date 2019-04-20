@@ -1,0 +1,5 @@
+__pycache__
+111
+Fenix.spec
+finish_app.spec
+myDB
