@@ -1,0 +1,92 @@
+# -*- coding: utf-8 -*-
+
+# Form implementation generated from reading ui file 'login_form.ui'
+#
+# Created by: PyQt5 UI code generator 5.11.2
+#
+# WARNING! All changes made in this file will be lost!
+
+from PyQt5 import QtCore, QtGui, QtWidgets
+
+class Login_MainWindow(object):
+    def setupUi(self, MainWindow):
+        MainWindow.setObjectName("Моя прога")
+        MainWindow.resize(553, 257)
+        self.centralwidget = QtWidgets.QWidget(MainWindow)
+        self.centralwidget.setObjectName("centralwidget")
+        self.pushButton_add_user = QtWidgets.QPushButton(self.centralwidget)
+        self.pushButton_add_user.setGeometry(QtCore.QRect(280, 180, 121, 23))
+        self.pushButton_add_user.setObjectName("pushButton_add_user")
+        self.pushButton_login = QtWidgets.QPushButton(self.centralwidget)
+        self.pushButton_login.setGeometry(QtCore.QRect(90, 180, 121, 23))
+        self.pushButton_login.setObjectName("pushButton_login")
+        self.line_login = QtWidgets.QLineEdit(self.centralwidget)
+        self.line_login.setGeometry(QtCore.QRect(150, 60, 211, 20))
+        self.line_login.setObjectName("line_login")
+        self.line_pass = QtWidgets.QLineEdit(self.centralwidget)
+        self.line_pass.setGeometry(QtCore.QRect(150, 90, 211, 20))
+        self.line_pass.setObjectName("line_pass")
+        self.line_email = QtWidgets.QLineEdit(self.centralwidget)
+        self.line_email.setGeometry(QtCore.QRect(150, 120, 211, 20))
+        self.line_email.setObjectName("line_email")
+        self.line_email_pass = QtWidgets.QLineEdit(self.centralwidget)
+        self.line_email_pass.setGeometry(QtCore.QRect(150, 150, 211, 20))
+        self.line_email_pass.setObjectName("line_email_pass")
+        self.label = QtWidgets.QLabel(self.centralwidget)
+        self.label.setGeometry(QtCore.QRect(40, 60, 51, 16))
+        font = QtGui.QFont()
+        font.setFamily("Lucida Bright")
+        font.setPointSize(12)
+        self.label.setFont(font)
+        self.label.setObjectName("label")
+        self.label_2 = QtWidgets.QLabel(self.centralwidget)
+        self.label_2.setGeometry(QtCore.QRect(40, 90, 71, 16))
+        font = QtGui.QFont()
+        font.setFamily("Lucida Bright")
+        font.setPointSize(12)
+        self.label_2.setFont(font)
+        self.label_2.setObjectName("label_2")
+        self.label_3 = QtWidgets.QLabel(self.centralwidget)
+        self.label_3.setGeometry(QtCore.QRect(40, 120, 61, 16))
+        font = QtGui.QFont()
+        font.setFamily("Lucida Bright")
+        font.setPointSize(12)
+        self.label_3.setFont(font)
+        self.label_3.setObjectName("label_3")
+        self.label_4 = QtWidgets.QLabel(self.centralwidget)
+        self.label_4.setGeometry(QtCore.QRect(10, 150, 131, 20))
+        font = QtGui.QFont()
+        font.setFamily("Lucida Bright")
+        font.setPointSize(12)
+        self.label_4.setFont(font)
+        self.label_4.setObjectName("label_4")
+        self.label_5 = QtWidgets.QLabel(self.centralwidget)
+        self.label_5.setGeometry(QtCore.QRect(380, 120, 161, 16))
+        self.label_5.setObjectName("label_5")
+        self.label_6 = QtWidgets.QLabel(self.centralwidget)
+        self.label_6.setGeometry(QtCore.QRect(380, 150, 161, 16))
+        self.label_6.setObjectName("label_6")
+        MainWindow.setCentralWidget(self.centralwidget)
+        self.menubar = QtWidgets.QMenuBar(MainWindow)
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 553, 21))
+        self.menubar.setObjectName("menubar")
+        MainWindow.setMenuBar(self.menubar)
+        self.statusbar = QtWidgets.QStatusBar(MainWindow)
+        self.statusbar.setObjectName("statusbar")
+        MainWindow.setStatusBar(self.statusbar)
+
+        self.retranslateUi(MainWindow)
+        QtCore.QMetaObject.connectSlotsByName(MainWindow)
+
+    def retranslateUi(self, MainWindow):
+        _translate = QtCore.QCoreApplication.translate
+        MainWindow.setWindowTitle(_translate("MainWindow", "Вход в систему"))
+        self.pushButton_add_user.setText(_translate("MainWindow", "Зарегистрироваться"))
+        self.pushButton_login.setText(_translate("MainWindow", "Войти"))
+        self.label.setText(_translate("MainWindow", "Логин"))
+        self.label_2.setText(_translate("MainWindow", "Пароль"))
+        self.label_3.setText(_translate("MainWindow", "email"))
+        self.label_4.setText(_translate("MainWindow", "пароль от email"))
+        self.label_5.setText(_translate("MainWindow", "Нужен только для регистрации"))
+        self.label_6.setText(_translate("MainWindow", "Нужен только для регистрации"))
+
